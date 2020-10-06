@@ -99,7 +99,7 @@
               function search(num) {
 
                 // Declare Apache Solr Server url as host URL
-                  var hostURL='https://heriport.cs.uct.ac.za/solr/ThreeRepos/select';
+                  var hostURL='https://heriport.cs.uct.ac.za/solr/FinalCollection/select';
                   var xmlHttpReq = false;
                   var xmlHttpClient = this;
 
@@ -150,8 +150,8 @@
                x.style.display = "none";
 
                // Heading displays result indexes per 30 results if more than 30 results found
-                if(rsp.response.numFound>30){
-                 res+= "Showing results " +num+" to "+ parseInt(30+num)+ " of "+rsp.response.numFound +" results.<br>";
+                if(rsp.response.numFound>30 && num<rsp.response.numFound  && rsp.response.numFound>num+30){
+                 res+= "Showing results " +parseInt(num+1)+" to "+ parseInt(30+num)+ " of "+rsp.response.numFound +" results.<br>";
                  res+= "Click on Title for more information. "+"<br><br>";
 
                }
@@ -161,11 +161,15 @@
                // Heading indicates no further results found if next button is clicked with no additional responses found
                 else if(num>rsp.response.numFound){
                     res+= "No Further Results Found.<br>";
-                  }
+               }
 
                // Heading displays final result index on one page if less than 30 results found
+               else if(rsp.response.numFound>30 && rsp.response.numFound<num+30){
+               res+= "Showing results " +parseInt(num+1)+" to "+ rsp.response.numFound+ " of "+rsp.response.numFound +" results.<br>";
+               res+= "Click on Title for more information. "+"<br><br>";
+               }
                 else{
-                res+= "Showing results " +num+" to "+ rsp.response.numFound+ " of "+rsp.response.numFound +" results.<br>";
+                res+= "Showing results " +parseInt(num+1)+" to "+ rsp.response.numFound+ " of "+rsp.response.numFound +" results.<br>";
                 res+= "Click on Title for more information. "+"<br><br>";
                 }
 
