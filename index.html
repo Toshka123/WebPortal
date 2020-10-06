@@ -1,36 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
+<!--
+  Toshka Coleman: @CLMTOS001
+  Home Page
+  Original Template Source: TemplateMo 546
+  https://templatemo.com/tm-546-sixteen-clothing
+-->
   <head>
-
+    <!-- Web page metadata including UTF encoding, Bootstrap CSS and stylesheets used -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
     <title>HERIPORT</title>
-
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!--
-
-TemplateMo 546 Heriport
-
-https://templatemo.com/tm-546-sixteen-clothing
-
--->
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
-
   </head>
 
   <body>
-
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -40,15 +32,17 @@ https://templatemo.com/tm-546-sixteen-clothing
         </div>
     </div>
     <!-- ***** Preloader End ***** -->
-
     <!-- Header -->
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>HERIPORT <em>Web Portal</em></h2></a>
+          <!-- Title -->
+          <a class="navbar-brand" href="index.html"><h2>HERIPORT<em> Web Portal</em></h2></a>
+          <!-- Navigation Toggler -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <!-- Navigation Header Bar -->
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
@@ -56,8 +50,10 @@ https://templatemo.com/tm-546-sixteen-clothing
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
+
+              <!-- Navigation Heading Items -->
               <li class="nav-item">
-                <a class="nav-link" href="browse.html"> Browse Collections</a>
+                <a class="nav-link" href="browse.html">Browse Collections</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="search.html">Search Collections</a>
@@ -71,16 +67,21 @@ https://templatemo.com/tm-546-sixteen-clothing
       </nav>
     </header>
 
-    <!-- Page Content -->
-    <!-- Banner Starts Here -->
+    <!-- Web Page Content -->
+    <!-- Banner for Introduction -->
     <div class="banner header-text">
       <div class="owl-banner owl-carousel">
         <div class="banner-item-01">
           <div class="text-content">
-            <h4>The First Central South African Heritage Portal</h4>
+
+            <!-- Introduction to Heriport-->
             <h2>Welcome to Heriport</h2>
+            <h4>The First Central South African Heritage Portal</h4></br>
+            <h6 style='color:#ffe6cc; font-size:20px;'>HERIPORT is the first South African heritage Web portal that provides users with central access to unique historical resources.</br> Simply search and browse through various collections and click on an item's identifier to link to the original resource!</h6><br>
           </div>
         </div>
+
+        <!-- Display list of data providers-->
         <div class="banner-item-02">
           <div class="text-content">
             <h2>Browse Various Archives</h2><br>
@@ -88,14 +89,14 @@ https://templatemo.com/tm-546-sixteen-clothing
             <h4>Bleek and Lloyd</h4>
             <h4>Metsemegologolo</h4><br>
             <h4><i>And More To Come...</i></h4>
-
           </div>
         </div>
-
       </div>
+
     </div>
     <!-- Banner Ends Here -->
 
+    <!-- Carousel Design -->
     <div class="latest-products">
       <div class="container">
         <div class="row">
@@ -105,31 +106,23 @@ https://templatemo.com/tm-546-sixteen-clothing
               <a href="browse.html">browse all resources <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
-          <div class="col-md-12">
+              <div class="col-md-12">
               <div id="head" align = 'center' padding-left= '200px'></div>
-
               <div id="clean" align = 'left' padding-left= '200px'></div>
-              <div id = "nav2" class="filters" align = 'center'>
-
-
+              <div id = "nav2" class="filters" align = 'center'></div>
               </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
+    </div>
 
-
-
-
+    <!-- Footer Copyright information -->
     <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
-              <p>Copyright &copy; 2020 Heriport.
-
-            Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+              <p>Copyright &copy; 2020 Heriport. Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
             </div>
           </div>
         </div>
@@ -140,105 +133,70 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script language="Javascript">
-    //main function called when clicking on search button
+
+    // Declare num variable which indicates first result index
     var num = 0;
-    search(0);
+    carousel(0);
 
-
-    function search(num) {
-      //Solr search url
-      //  var hostURL='http://rafiki1.cs.uct.ac.za:8983/solr/FinalTests/select';
-        var hostURL='http://rafiki1.cs.uct.ac.za:8983/solr/ThreeRepos/select';
-
+    //Main function called for carousel implementation
+    function carousel(num) {
+      // Declare Apache Solr Server url as host URL
+        var hostURL='https://heriport.cs.uct.ac.za/solr/ThreeRepos/select';
         var xmlHttpReq = false;
         var xmlHttpClient = this;
 
-      // Mozilla/Safari
+      // Instantiate XML HTTP request for Mozilla/Safari/Chrome Browsers
         if (window.XMLHttpRequest) {
             xmlHttpClient.xmlHttpReq = new XMLHttpRequest();
         }
-      // IE
+      // Instantiate XML HTTP request for Internet Explorer Browsers
         else if (window.ActiveXObject) {
             xmlHttpClient.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
+      // Send request to connect to Apache Solr Server host url and call showResponse method for response receieved
       xmlHttpClient.xmlHttpReq.open('POST', hostURL, true);
         xmlHttpClient.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xmlHttpClient.xmlHttpReq.onreadystatechange = function() {
             if (xmlHttpClient.xmlHttpReq.readyState == 4) {
                 showResponse(xmlHttpClient.xmlHttpReq.responseText,num);
             }}
+      // Call appendParams method to generate Apache standard search query and send query to Solr server
         var queryString = appendParams(num);
         xmlHttpClient.xmlHttpReq.send(queryString);
     }
 
-    // get entered text in query parameter
-
+    // Get entered text in query parameter, format and return as Apache standard search query
+    // Request 15 results and sort by date to get latest resources
     function appendParams(num =0) {
-
       var querystring = ''
-
-
-      //qstr = 'q=' + " dc_title:"+escape(querystring)+ "&fl=id,dc_title,dc_modDate";
       qstrAll = 'q='+ "*:*" +"&start="+0+"&rows="+15+"&sort=dc_modDate desc&fl=id,dc_title,dc_modDate";
-    //  qstrAll = 'q='+ "*:*" +"&fl=id,title,author,genre";
       return qstrAll;
     }
 
-    //paring and displaying the response
+    // Display response on Web page
     function showResponse(str){
-    //  document.getElementById("responsestring").innerHTML = str;
 
       var rsp = eval("("+str+")");
       var html = '<strong></strong>';
-
-      //html= "</br><strong>Total Found: "+ rsp.response.numFound+"</strong>";
-      console.log(rsp)
-
       var res= "Showing latest 15 resources " ;
       var i;
+
+    // Iterate through JSON formatted response and return identifier, title and date field values
       for (i = num; i < rsp.response.docs.length; i++) {
-      //  html+= rsp.response.docs[i]
         var first = rsp.response.docs[i];
-      //  html += "<br>Item src: "+ first._src_
-      //  html += "<br>Item version: "+ first.genre
-
-        console.log("check src: " +first._src_)
-
-      //html += "<br>ID: "+ first.id
-      html += "<b><br>"+(i+1)+ ". Identifier:</b> "+"<a href = "+first.id +">"+first.id+" </a>"
+      html += "<b><br>"+(i+1)+ ". Identifier:</b> "+"<a href = "+first.id +" target = _blank>"+first.id+" </a>"
       html += "<b><br>Title:</b> "+first.dc_title
       html += "<b><br>Date Added: </b>"+ first.dc_modDate +"</br>"
-
       }
+
+    // Add responses to HTML Web page
       document.getElementById("head").innerHTML = res
-
       document.getElementById("clean").innerHTML = html
-
-      var userInput = str;
-      console.log(str)
-      console.log(html)
-
-
-    //  document.getElementById("result").value = html;
-
-      //var a = document.createElement("a");
-      //var content = JSON.stringify(rsp.response);
-      //var file = new Blob([content], {type: 'text/plain'});
-      //a.href = URL.createObjectURL(file);
-      //a.download = 'Output.txt';
-      //a.click();
-
-
-
-    }
-
+     }
 
     </script>
-
-
     <!-- Additional Scripts -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/owl.js"></script>
@@ -246,19 +204,5 @@ https://templatemo.com/tm-546-sixteen-clothing
     <script src="assets/js/isotope.js"></script>
     <script src="assets/js/accordions.js"></script>
 
-
-    <script language = "text/Javascript">
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
-
-
   </body>
-
 </html>

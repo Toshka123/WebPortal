@@ -1,53 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <!--
+  Toshka Coleman: @CLMTOS001
+  Search Page
+  Original Template Source: TemplateMo 546
+  https://templatemo.com/tm-546-sixteen-clothing
+  -->
   <head>
-
+    <!-- Web page metadata including UTF encoding, Bootstrap CSS and stylesheets used -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
     <title>Search</title>
-
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!--
-
-TemplateMo 546 Sixteen Clothing
-
-https://templatemo.com/tm-546-sixteen-clothing
-
--->
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
-
   </head>
 
   <body>
-
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <div class="jumper"></div>
     </div>
     <!-- ***** Preloader End ***** -->
-
     <!-- Header -->
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
+          <!-- Page Title -->
           <a class="navbar-brand" href="index.html"><h2>HERIPORT <em>Web Portal</em></h2></a>
+          <!-- Navigation Toggler -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <!-- Navigation Header Bar -->
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
@@ -55,6 +46,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
+              <!-- Navigation Heading Items -->
               <li class="nav-item">
                 <a class="nav-link" href="browse.html">Browse Collections</a>
               </li>
@@ -70,486 +62,362 @@ https://templatemo.com/tm-546-sixteen-clothing
       </nav>
     </header>
 
-    <!-- Page Content -->
+    <!-- Web Page Content -->
+    <!-- Banner for Search heading -->
     <div class="page-heading contact-heading header-text">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="text-content">
-              <h4>Across multiple archives</h4>
+            <div class="text-content"><br>
+
+              <!-- Title and subtitle -->
               <h2>Search For Resources</h2>
+              <h4 style = "color: #ffe6b3";>Across multiple archives</h4>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-
+    <!-- Main page content container -->
     <div class="find-us">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-
-
               <html>
               <script language="Javascript">
-              //main function called when clicking on search button
-              var num = 0;
 
-              content ="";
-
-              num = 0;
-              const i =0;
-              let m =0;
-
-              let first ="test";
+              // Set variable, lists and dictionaries
+              var num = 0;     // Declare num variable which indicates respVal result index per 30 results (pagination)
+              let respVal ="";   // response value variable
               var str ="";
-              var d;
-              var foo;
-              var funcs = [];
-              var hList = [];
-              var htmlBase = "";
+              var htmlBase = ""; // HTML content variable
+              var dict = {'id1':0, 'id2':1, 'id3':2, 'id4':3,'id5':4, 'id6':5,'id7':6, 'id8':7,'id9':8, 'id10':9,'id11':10, 'id12':11,'id13':12,'id14':13,'id15':14,'id16':15,'id17':16,'id18':17,'id19':18, 'id20':19,'id21':20, 'id22':21,'id23':22,'id24':23,'id25':24,'id26':25,'id27':26,'id28':27,'id29':28, 'id30':29}
 
-
-              var dict = [];
-              dict['id1'] = 0;
-              dict['id2'] = 1;
-              dict['id3'] = 2;
-              dict['id4'] = 3;
-              dict['id5'] = 4;
-              dict['id6'] = 5;
-              dict['id7'] = 6;
-              dict['id8'] = 7;
-              dict['id9'] = 8;
-              dict['id10'] = 9;
-              dict['id11'] = 10;
-              dict['id12'] = 11;
-              dict['id13'] = 12;
-              dict['id14'] = 13;
-              dict['id15'] = 14;
-              dict['id16'] = 15;
-              dict['id17'] = 16;
-              dict['id18'] = 17;
-              dict['id19'] = 18;
-              dict['id20'] = 19;
-              dict['id21'] = 20;
-              dict['id22'] = 21;
-              dict['id23'] = 22;
-              dict['id24'] = 23;
-              dict['id25'] = 24;
-              dict['id26'] = 25;
-              dict['id27'] = 26;
-              dict['id28'] = 27;
-              dict['id29'] = 28;
-              dict['id30'] = 29;
-
+              // Main function called when clicking on search button
               function search(num) {
-                //Solr search url
-                //  var hostURL='http://rafiki1.cs.uct.ac.za:8983/solr/FinalTests/select';
-                var hostURL='http://rafiki1.cs.uct.ac.za:8983/solr/ThreeRepos/select';
 
+                // Declare Apache Solr Server url as host URL
+                  var hostURL='https://heriport.cs.uct.ac.za/solr/ThreeRepos/select';
                   var xmlHttpReq = false;
                   var xmlHttpClient = this;
 
-                // Mozilla/Safari
+                  // Instantiate XML HTTP request for Mozilla/Safari/Chrome Browsers
                   if (window.XMLHttpRequest) {
                       xmlHttpClient.xmlHttpReq = new XMLHttpRequest();
                   }
-                // IE
+                  // Instantiate XML HTTP request for Internet Explorer Browsers
                   else if (window.ActiveXObject) {
                       xmlHttpClient.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
                   }
 
+                // Send request to connect to Apache Solr Server host url and call showResponse method for response receieved
                 xmlHttpClient.xmlHttpReq.open('POST', hostURL, true);
                   xmlHttpClient.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                   xmlHttpClient.xmlHttpReq.onreadystatechange = function() {
                       if (xmlHttpClient.xmlHttpReq.readyState == 4) {
                           showResponse(xmlHttpClient.xmlHttpReq.responseText,num);
                       }}
-                    var queryString = "dublin";
+               // Call appendParams method to generate Apache standard search query and send query to Solr server
+                    var queryString = "";
                    queryString = appendParams(num);
                   console.log("query: "+ queryString)
                   xmlHttpClient.xmlHttpReq.send(queryString);
               }
 
-              // get entered text in query parameter
-
               function appendParams(num) {
-
+                // Get entered text in query parameter, format and return as Apache standard search query
                 var querystring = document.getElementById("querystring").value;
-
-
-                //qstr = 'q=' + " dc_title:"+escape(querystring)+ "&fl=id,dc_title,dc_modDate";
+                // Allow query to search through all Dublin Core field values for matches
                 qstr = 'q=' + ("id:"+escape(querystring)+" || dc_title: "+"*"+escape(querystring)+"*"+" || dc_contributor:"+escape(querystring)+" || dc_format:"+escape(querystring)+" || dc_creator:"+escape(querystring))+"&start="+num+"&rows="+parseInt(num+30)+"&sort= dc_title asc&fl=id,dc_title,dc_modDate,dc_creator,dc_contributor,dc_description,dc_type,dc_rights,dc_subject&rows=4000";
+                // Add 30 to last response index
                 num = num+30
-//                document.getElementById('nav2').innerHTML = " <ul> <li class=\"active\"> <input value=\"Previous\" type=\"button\" onClick='search(num = num-30);'> </li> <li> <input value=\"Next\" type=\"button\" onClick='search( num = num+30);'> </li> </ul>"
-              //  qstrAll = 'q='+ "*:*" +"&fl=id,title,author,genre";
                 return qstr;
               }
 
-              //paring and displaying the response
-              //paring and displaying the response
+              // Display response on Web page
               function showResponse(str, num){
-              //  document.getElementById("responsestring").innerHTML = str;
-
-
+                // Set response variables
                 var rsp = eval("("+str+")");
                 var html = '<strong></strong>';
                 var res = '<strong></strong>';
 
+              // Previous and Next buttons with methods implementation
                 document.getElementById('nav2').innerHTML = " <ul> <li class=\"active\"> <input value=\"Previous\" type=\"button\" onClick='search(num = num-30);'> </li> <li> <input value=\"Next\" type=\"button\" onClick='search( num = num+30);'> </li> </ul>"
-
+              // Hide search bar after results display
                var x = document.getElementById("searchBar");
                x.style.display = "none";
 
-
-                //html= "</br><strong>Total Found: "+ rsp.response.numFound+"</strong>";
-                console.log(rsp)
+               // Heading displays result indexes per 30 results if more than 30 results found
                 if(rsp.response.numFound>30){
                  res+= "Showing results " +num+" to "+ parseInt(30+num)+ " of "+rsp.response.numFound +" results.<br>";
                  res+= "Click on Title for more information. "+"<br><br>";
 
                }
+               // Heading indicates no reponses found
                 else if(rsp.response.numFound==0){
                   res+= "No results found.<br>";}
+               // Heading indicates no further results found if next button is clicked with no additional responses found
                 else if(num>rsp.response.numFound){
                     res+= "No Further Results Found.<br>";
                   }
+
+               // Heading displays final result index on one page if less than 30 results found
                 else{
                 res+= "Showing results " +num+" to "+ rsp.response.numFound+ " of "+rsp.response.numFound +" results.<br>";
                 res+= "Click on Title for more information. "+"<br><br>";
-
                 }
 
+        // If results are found
+        if(num>=0){
 
-                console.log("nommer: "+num)
-                console.log("rsp: "+rsp.response.numFound)
+            // Set variables that accumulate HTML content
+            var htmlRecord = "";
+            htmlBase = "";
+            // Assign responses in current 30 results to variables
+            try {respVal1 = rsp.response.docs[dict['id1']]} catch(e){}
+            try {respVal2 = rsp.response.docs[dict['id2']]} catch(e){}
+            try {respVal3 = rsp.response.docs[dict['id3']]} catch(e){}
+            try {respVal4 = rsp.response.docs[dict['id4']]} catch(e){}
+            try {respVal5 = rsp.response.docs[dict['id5']]} catch(e){}
+            try {respVal6 = rsp.response.docs[dict['id6']]} catch(e){}
+            try {respVal7 = rsp.response.docs[dict['id7']]} catch(e){}
+            try {respVal8 = rsp.response.docs[dict['id8']]} catch(e){}
+            try {respVal9 = rsp.response.docs[dict['id9']]} catch(e){}
+            try {respVal10 = rsp.response.docs[dict['id10']]} catch(e){}
+            try {respVal11 = rsp.response.docs[dict['id11']]} catch(e){}
+            try {respVal12 = rsp.response.docs[dict['id12']]} catch(e){}
+            try {respVal13 = rsp.response.docs[dict['id13']]} catch(e){}
+            try {respVal14 = rsp.response.docs[dict['id14']]} catch(e){}
+            try {respVal15 = rsp.response.docs[dict['id15']]} catch(e){}
+            try {respVal16 = rsp.response.docs[dict['id16']]} catch(e){}
+            try {respVal17 = rsp.response.docs[dict['id17']]} catch(e){}
+            try {respVal18 = rsp.response.docs[dict['id18']]} catch(e){}
+            try {respVal19 = rsp.response.docs[dict['id19']]} catch(e){}
+            try {respVal20 = rsp.response.docs[dict['id20']]} catch(e){}
+            try {respVal21 = rsp.response.docs[dict['id21']]} catch(e){}
+            try {respVal22 = rsp.response.docs[dict['id22']]} catch(e){}
+            try {respVal23 = rsp.response.docs[dict['id23']]} catch(e){}
+            try {respVal24 = rsp.response.docs[dict['id24']]} catch(e){}
+            try {respVal25 = rsp.response.docs[dict['id25']]} catch(e){}
+            try {respVal26 = rsp.response.docs[dict['id26']]} catch(e){}
+            try {respVal27 = rsp.response.docs[dict['id27']]} catch(e){}
+            try {respVal28 = rsp.response.docs[dict['id28']]} catch(e){}
+            try {respVal29 = rsp.response.docs[dict['id29']]} catch(e){}
+            try {respVal30 = rsp.response.docs[dict['id30']]} catch(e){}
+            // Append title, archive subject and date per record to HTML content variable for 30 records at a time.
+            // Add link on title to viewMetadata method to see additional metadata of spefiic record.
+            try {  htmlRecord += "<br><b> "+parseInt(num+1)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal1, str,dict[\"id1\"], num);'>"+respVal1.dc_title+" </a>"
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal1.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> "+respVal1.dc_modDate+" </a><hr> "} catch(e){}
 
-              //  console.log("doccs: "+ parseInt(rsp.response.docs.length+num))
-              //  console.log("resp30: "+rsp.response.docs[30])
+            try {htmlRecord += "<b> "+parseInt(num+2)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal2, str,dict[\"id2\"], num);'>"+respVal2.dc_title+" </a> "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal2.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> "+respVal2.dc_modDate+" </a> <hr> "} catch(e){}
 
-              if(num>=0){
-                var htmlRecord = "";
+            try {htmlRecord += "<b> "+parseInt(num+3)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal3, str,dict[\"id3\"], num);'>"+respVal3.dc_title+" </a> "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal3.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal3.dc_modDate+" </a> <hr> "} catch(e){}
 
+            try {htmlRecord += "<b> "+parseInt(num+4)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal4, str,dict[\"id4\"], num);'>"+respVal4.dc_title+" </a> "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal4.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> "+respVal4.dc_modDate+" </a> <hr> "} catch(e){}
 
+            try {htmlRecord += "<b> "+parseInt(num+5)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal5, str,dict[\"id5\"], num);'>"+respVal5.dc_title+" </a> "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal5.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> "+respVal5.dc_modDate+" </a> <hr> "} catch(e){}
 
-            //    for (let i = num; i < rsp.response.docs.length; i++) {
-                    htmlRecord = "";
-                    htmlBase = "";
+            try {htmlRecord += "<b> "+parseInt(num+6)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal6, str,dict[\"id6\"], num);'>"+respVal6.dc_title+" </a> "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal6.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal6.dc_modDate+" </a> <hr> "} catch(e){}
 
-                    console.log("numBER: "+num)
-                    //if (num == 30){
-                    //  for ( [key, value] of Object.entries(dict)) {
-                        //dict[key] = value+30;
+            try {htmlRecord += "<b> "+parseInt(num+7)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal7, str,dict[\"id7\"], num);'>"+respVal7.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal7.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal7.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      //}
+            try {htmlRecord += "<b> "+parseInt(num+8)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal8, str,dict[\"id8\"], num);'>"+respVal8.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal8.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal8.dc_modDate+" </a> <hr> "} catch(e){}
 
-                        window["ident"+i] = +i;
-                        const n = i;
-                        console.log("check: "+ eval(n))
+            try {htmlRecord += "<b> "+parseInt(num+9)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal9, str,dict[\"id9\"], num);'>"+respVal9.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal9.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal9.dc_modDate+" </a> <hr> "} catch(e){}
 
-                        try {first1 = rsp.response.docs[dict['id1']]} catch(e){}
-                        try {first2 = rsp.response.docs[dict['id2']]} catch(e){}
-                        try {first3 = rsp.response.docs[dict['id3']]} catch(e){}
-                        try {first4 = rsp.response.docs[dict['id4']]} catch(e){}
-                        try {first5 = rsp.response.docs[dict['id5']]} catch(e){}
-                        try {first6 = rsp.response.docs[dict['id6']]} catch(e){}
-                        try {first7 = rsp.response.docs[dict['id7']]} catch(e){}
-                        try {first8 = rsp.response.docs[dict['id8']]} catch(e){}
-                        try {first9 = rsp.response.docs[dict['id9']]} catch(e){}
-                        try {first10 = rsp.response.docs[dict['id10']]} catch(e){}
-                        try {first11 = rsp.response.docs[dict['id11']]} catch(e){}
-                        try {first12 = rsp.response.docs[dict['id12']]} catch(e){}
-                        try {first13 = rsp.response.docs[dict['id13']]} catch(e){}
-                        try {first14 = rsp.response.docs[dict['id14']]} catch(e){}
-                        try {first15 = rsp.response.docs[dict['id15']]} catch(e){}
-                        try {first16 = rsp.response.docs[dict['id16']]} catch(e){}
-                        try {first17 = rsp.response.docs[dict['id17']]} catch(e){}
-                        try {first18 = rsp.response.docs[dict['id18']]} catch(e){}
-                        try {first19 = rsp.response.docs[dict['id19']]} catch(e){}
-                        try {first20 = rsp.response.docs[dict['id20']]} catch(e){}
-                        try {first21 = rsp.response.docs[dict['id21']]} catch(e){}
-                        try {first22 = rsp.response.docs[dict['id22']]} catch(e){}
-                        try {first23 = rsp.response.docs[dict['id23']]} catch(e){}
-                        try {first24 = rsp.response.docs[dict['id24']]} catch(e){}
-                        try {first25 = rsp.response.docs[dict['id25']]} catch(e){}
-                        try {first26 = rsp.response.docs[dict['id26']]} catch(e){}
-                        try {first27 = rsp.response.docs[dict['id27']]} catch(e){}
-                        try {first28 = rsp.response.docs[dict['id28']]} catch(e){}
-                        try {first29 = rsp.response.docs[dict['id29']]} catch(e){}
-                        try {first30 = rsp.response.docs[dict['id30']]} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+10)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal10, str,dict[\"id10\"], num);'>"+respVal10.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal10.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal10.dc_modDate+" </a> <hr> "} catch(e){}
 
-                        //first30 = rsp.response.docs[id30];
+            try {htmlRecord += "<b> "+parseInt(num+11)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal11, str,dict[\"id11\"], num);'>"+respVal11.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal11.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal11.dc_modDate+" </a> <hr> "} catch(e){}
 
-                        //const attend= document.createElement("a");
-                        //attend.innerHTML = i;
-                        //attend.addEventListener("click", function() {saveEvent(first);}, false);
-                        //clean.appendChild(attend);
-                      //  console.log("id1: "+id1)
+            try {htmlRecord += "<b> "+parseInt(num+12)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal12, str,dict[\"id12\"], num);'>"+respVal12.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal12.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal12.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      //  console.log("first1: "+first1.dc_title)
-                      //  console.log("dict num: "+dict["i"])
+            try {htmlRecord += "<b> "+parseInt(num+13)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal13, str,dict[\"id13\"], num);'>"+respVal13.dc_title+" </a> "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal13.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal13.dc_modDate+" </a> <hr> "} catch(e){}
 
-                    recordID = i
-                    //  htmlRecord += "<br> <b>"+parseInt(i+1)+ ". dict['identifier:</b> "+"<a href = "+first.dict['id+">"+first.dict['id+" </a>"
-                      try {  htmlRecord += "<br><b> "+parseInt(num+1)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first1, str,dict[\"id1\"], num);'>"+first1.dc_title+" </a>"
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first1.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> "+first1.dc_modDate+" </a><hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+14)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal14, str,dict[\"id14\"], num);'>"+respVal14.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal14.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal14.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+2)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first2, str,dict[\"id2\"], num);'>"+first2.dc_title+" </a> "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first2.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> "+first2.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+15)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal15, str,dict[\"id15\"], num);'>"+respVal15.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal15.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal15.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+3)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first3, str,dict[\"id3\"], num);'>"+first3.dc_title+" </a> "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first3.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first3.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+16)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal16, str,dict[\"id16\"], num);'>"+respVal16.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal16.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal16.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+4)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first4, str,dict[\"id4\"], num);'>"+first4.dc_title+" </a> "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first4.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> "+first4.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+17)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal17, str,dict[\"id17\"], num);'>"+respVal17.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal17.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal17.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+5)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first5, str,dict[\"id5\"], num);'>"+first5.dc_title+" </a> "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first5.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> "+first5.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+18)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal18, str,dict[\"id18\"], num);'>"+respVal18.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal18.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal18.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+6)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first6, str,dict[\"id6\"], num);'>"+first6.dc_title+" </a> "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first6.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first6.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+19)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal19, str,dict[\"id19\"], num);'>"+respVal19.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal19.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal19.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+7)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first7, str,dict[\"id7\"], num);'>"+first7.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first7.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first7.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+20)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal20, str,dict[\"id20\"], num);'>"+respVal20.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal20.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal20.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+8)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first8, str,dict[\"id8\"], num);'>"+first8.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first8.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first8.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+21)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal21, str,dict[\"id21\"], num);'>"+respVal21.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal21.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal21.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+9)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first9, str,dict[\"id9\"], num);'>"+first9.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first9.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first9.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+22)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal22, str,dict[\"id22\"], num);'>"+respVal22.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal22.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal22.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+10)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first10, str,dict[\"id10\"], num);'>"+first10.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first10.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first10.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+23)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal23, str,dict[\"id23\"], num);'>"+respVal23.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal23.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal23.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+11)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first11, str,dict[\"id11\"], num);'>"+first11.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first11.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first11.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+24)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal24, str,dict[\"id24\"], num);'>"+respVal24.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal24.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal24.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+12)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first12, str,dict[\"id12\"], num);'>"+first12.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first12.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first12.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+25)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal25, str,dict[\"id25\"], num);'>"+respVal25.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal25.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal25.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+13)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first13, str,dict[\"id13\"], num);'>"+first13.dc_title+" </a> "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first13.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first13.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+26)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal26, str,dict[\"id26\"], num);'>"+respVal26.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal26.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal26.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+14)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first14, str,dict[\"id14\"], num);'>"+first14.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first14.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first14.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+27)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal27, str,dict[\"id27\"], num);'>"+respVal27.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal27.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal27.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+15)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first15, str,dict[\"id15\"], num);'>"+first15.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first15.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first15.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+28)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal28, str,dict[\"id28\"], num);'>"+respVal28.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal28.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal28.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+16)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first16, str,dict[\"id16\"], num);'>"+first16.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first16.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first16.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+29)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal29, str,dict[\"id29\"], num);'>"+respVal29.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal29.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal29.dc_modDate+" </a> <hr> "} catch(e){}
 
-                      try {htmlRecord += "<b> "+parseInt(num+17)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first17, str,dict[\"id17\"], num);'>"+first17.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first17.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first17.dc_modDate+" </a> <hr> "} catch(e){}
+            try {htmlRecord += "<b> "+parseInt(num+30)+". Title:</b> " +"<a  href=\"#\" onclick='viewMetadata(respVal30, str,dict[\"id30\"], num);'>"+respVal30.dc_title+" </a>  "
+            htmlRecord += "<br><b> Archive Subject:</b> "+respVal30.dc_subject+" </a>"
+            htmlRecord += "<br><b> Date Added:</b> " +respVal30.dc_modDate+" </a> <hr> "} catch(e){}
+            // Append button and its method that redirects user to search page to HTML content variable.
+              htmlRecord +="<button href='search.html' onclick='window.location.reload();'>Go Back to Search</button>"
+              htmlBase += htmlRecord
+              // Add responses to HTML Web page
+              document.getElementById("clean").innerHTML = htmlBase
+              document.getElementById("head").innerHTML = res }
 
-                      try {htmlRecord += "<b> "+parseInt(num+18)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first18, str,dict[\"id18\"], num);'>"+first18.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first18.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first18.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+19)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first19, str,dict[\"id19\"], num);'>"+first19.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first19.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first19.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+20)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first20, str,dict[\"id20\"], num);'>"+first20.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first20.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first20.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+21)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first21, str,dict[\"id21\"], num);'>"+first21.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first21.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first21.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+22)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first22, str,dict[\"id22\"], num);'>"+first22.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first22.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first22.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+23)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first23, str,dict[\"id23\"], num);'>"+first23.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first23.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first23.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+24)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first24, str,dict[\"id24\"], num);'>"+first24.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first24.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first24.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+25)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first25, str,dict[\"id25\"], num);'>"+first25.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first25.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first25.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+26)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first26, str,dict[\"id26\"], num);'>"+first26.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first26.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first26.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+27)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first27, str,dict[\"id27\"], num);'>"+first27.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first27.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first27.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+28)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first28, str,dict[\"id28\"], num);'>"+first28.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first28.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first28.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+29)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first29, str,dict[\"id29\"], num);'>"+first29.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first29.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first29.dc_modDate+" </a> <hr> "} catch(e){}
-
-                      try {htmlRecord += "<b> "+parseInt(num+30)+". Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first30, str,dict[\"id30\"], num);'>"+first30.dc_title+" </a>  "
-                      htmlRecord += "<br><b> Archive Subject:</b> "+first30.dc_subject+" </a>"
-                      htmlRecord += "<br><b> Date Added:</b> " +first30.dc_modDate+" </a> <hr> "} catch(e){}
-
-
-                        htmlRecord +="<button href='search.html' onclick='window.location.reload();'>Go Back to Search</button>"
-
-
-                        //html += "<br> <b>"+parseInt(i+1)+ ". Identifier:</b> "+"<a href = "+first.id+">"+first.id+" </a>"
-                      //  html += "<br><b> Title:</b> " +"<a  href="#" onclick='search(str, num);'>"+first.dc_title+" </a>
-                        //html += "<br><b> Title:</b> " +"<a  href=\"#\" onclick='moreFunc(first, str,recordID, num);'>"+first.dc_title+" </a> "
-
-                        hList.push(i+first)
-                        console.log("list: "+ hList)
-
-                      //  htmlRecord += "<br><b>Date Added: </b>"+ first.dc_modDate+"<br>"
-                        // html += "<br><b>Creator(s):</b> "+first.dc_creator
-                        // html += "<br><b>Type: </b>"+ first.dc_type
-                        // html += "<br><b>Subject: </b>"+ first.dc_subject
-                        // html += "<br><b>Creator(s):</b> "+first.dc_creator
-                        // html += "<br><b>Contributor(s): </b>"+ first.dc_contributor
-                        // html += "<br><b>Description: </b>"+ first.dc_description
-                        // html += "<br><b>Rights: </b>"+ first.dc_rights+"</br><hr>"
-                        //   //document.getElementById('nav2').innerHTML = ""
-                        // document.getElementById("head").innerHTML=""
-                        htmlBase += htmlRecord
-                      //  console.log("htmlRecord: "+ htmlRecord)
-                      //}
-
-                    //}
-                        var userInput = str;
-                            //}
-                          //  console.log("htmlBase: "+ htmlBase)
-                            document.getElementById("clean").innerHTML = htmlBase
-                            document.getElementById("head").innerHTML = res
-
-
-                          }
-                          //  document.getElementById("head").innerHTML = res
-                          //  document.getElementById("clean").innerHTML = html
-
+              // Index next 30 results (pagination)
               else{num= num+30;}}
 
-             function moreFunc(first,str,n,num){
-
-                  console.log("we are here: " +n)
-                  console.log("first: " +first)
+             // Method that displays all metadata of individual record in table
+             function viewMetadata(respVal,str,n,num){
 
                   var html = '<strong></strong>';
                   var view = "<br><b>View Record </b><br>"
                   html += "<br><table table-layout= 'fixed'> <style>   table{table-layout: fixed;} td{font-weight: normal; border-spacing: 2px; overflow: hidden;  word-wrap:break-word; word-break: break-word; border-bottom: 1px solid #ddd; } </style>"
-                  html += "<tr><tr><td width= '150px'>  <b>Identifier:</b> </td>"+"<td width= '800px'><a  value = i href = "+first.id+" target='_blank'>"+first.id+" </a></td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Title: </b></td> "+"<td width= '800px'>"+first.dc_title +"</td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Date Added:</b> </td>"+"<td width= '800px'>"+ first.dc_modDate +"</td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Type:</b> </td>"+"<td width= '800px'>"+ first.dc_type+"</td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Subject:<b> </td>"+"<td width= '800px'>"+ first.dc_subject+"</td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Creator(s): </b></td>"+"<td width= '800px'>"+first.dc_creator+"</td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Contributor(s):</b> </td>"+"<td width= '800px'>"+first.dc_contributor+"</td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Description:</b> </td>"+"<td>"+ first.dc_description+"</td></tr>"
-                  html += "<tr><tr><td width= '150px'>   <b>Rights:</b> </td>"+"<td width= '800px'>"+ first.dc_rights+"</br><hr>"+"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>  <b>Identifier:</b> </td>"+"<td width= '800px'><a  value = i href = "+respVal.id+" target='_blank'>"+respVal.id+" </a></td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Title: </b></td> "+"<td width= '800px'>"+respVal.dc_title +"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Date Added:</b> </td>"+"<td width= '800px'>"+ respVal.dc_modDate +"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Type:</b> </td>"+"<td width= '800px'>"+ respVal.dc_type+"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Subject:<b> </td>"+"<td width= '800px'>"+ respVal.dc_subject+"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Creator(s): </b></td>"+"<td width= '800px'>"+respVal.dc_creator+"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Contributor(s):</b> </td>"+"<td width= '800px'>"+respVal.dc_contributor+"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Description:</b> </td>"+"<td>"+ respVal.dc_description+"</td></tr>"
+                  html += "<tr><tr><td width= '150px'>   <b>Rights:</b> </td>"+"<td width= '800px'>"+ respVal.dc_rights+"</br><hr>"+"</td></tr>"
                   html += "</table>"
 
-                  //document.getElementById('nav2').innerHTML = ""
+                  // Add responses to HTML Web page
                   document.getElementById("head").innerHTML=view
+                  // Add button that returns to Search Results from individual record metadata table.
                   html +="<button href='search.html' onclick='search(num);'>Go Back</button>"
-
                   document.getElementById("clean").innerHTML = html
-                var userInput = str;
               }
-
-
               </script>
 
-                <div id = "searchBar" align='center'>
+
+              <!-- Search bar container -->
+                 <div id = "searchBar" align='center'>
                   <p>
-                    <input id="querystring" name="querystring" type="text" placeholder='Search Here'>
-                    <input value="Search" type="button" onClick='search(num);'>
-                    <br><br>Search by title, author, publisher...
+                 <!-- Search button  -->
+                  <input id="querystring" name="querystring" type="text" placeholder='Enter search item '>
+                  <input value="Search" type="button" id = "qs" onClick='search(num);'>
+                  <!-- Search guide -->
+                  <br><br>Search by title, creator, subject, publisher etc.
                   </p></div>
                   <div align='center'id="result"></div>
                   <div align='center'id="responsestring"></div>
                   <div align='center' class="col-md-12">  <div class="products">
-                      <div align='center' class="container">
+                  <div align='center' class="container">
                   <div  align='center' class="row">
-            <br>
-            <div id = "nav2" class="filters" align = 'center'>
-
-            </div>
-
-          </div>
-          <div id="head" align = 'center' padding-left= '200px'></div>
-
-          <div id="clean" align = 'left' padding-left= '200px'></div>
-                </div>
-                <div id="myData"></div>
-
-
-          <div id = "nav2" class="filters" align = 'center'>
-
-                </div>
+                  <br>
+                  <!-- Search Results containers -->
+                  <div id = "nav2" class="filters" align = 'center'>
+                  </div>
+                  </div>
+                  <div id="head" align = 'center' padding-left= '200px'></div>
+                  <div id="clean" align = 'left' padding-left= '200px'></div>
+                  </div>
+                  <div id="myData"></div>
+                  <div id = "nav2" class="filters" align = 'center'>
+                  </div>
+                  <script>
+                  // Allow user to also press enter after entering search item to trigger onClick method for search
+                  var input = document.getElementById("querystring");
+                  input.addEventListener("keyup", function(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        document.getElementById("qs").click();
+                    }});</script>
 
     <footer>
+      <!-- Footer Copyright information -->
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
-              <p>Copyright &copy; 2020 HERIPORT.
-
-             Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+              <p>Copyright &copy; 2020 HERIPORT. Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
             </div>
           </div>
         </div>
       </div>
     </footer>
 
-
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
     <!-- Additional Scripts -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/owl.js"></script>
     <script src="assets/js/slick.js"></script>
     <script src="assets/js/isotope.js"></script>
     <script src="assets/js/accordions.js"></script>
-
-
-    <script language = "text/Javascript">
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
-
-
   </body>
-
 </html>
